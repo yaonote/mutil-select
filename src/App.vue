@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-      hello world
+      <span v-for="item in components" :key="item.id">
+        {{item.name}}
+      </span>
   </div>
 </template>
 
@@ -9,7 +11,12 @@ export default {
   name: 'app',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      components: [
+        {
+          id: 1,
+          name: '多选器'
+        }
+      ]
     }
   }
 }
