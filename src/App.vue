@@ -1,24 +1,34 @@
 <template>
   <div id="app">
-      <span v-for="item in components" :key="item.id">
-        {{item.name}}
-      </span>
+      <MultiSelect @selectedRes="handleSelectedRes" :origin-data="dateList"></MultiSelect>
   </div>
 </template>
 
 <script>
+import MultiSelect from '@/component/multi-select/index.vue'
+import { getDateList } from '@/axios'
+
+
 export default {
   name: 'app',
+  created () {
+    getDateList().then(res => {
+      this.dateList = res;
+    })
+  },
   data () {
     return {
-      components: [
-        {
-          id: 1,
-          name: '多选器'
-        }
-      ]
+      dateList: []
     }
-  }
+  },
+  methods: {
+    handleSelectedRes(arr) {
+      // console.log('handleSelectedRes arr =>',arr)
+    }
+  },
+  components: {
+    MultiSelect,
+  },
 }
 </script>
 
